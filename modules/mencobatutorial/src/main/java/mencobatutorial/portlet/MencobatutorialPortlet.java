@@ -1,8 +1,6 @@
 package mencobatutorial.portlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,105 +9,179 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
-import javax.portlet.PortletPreferences;
-import javax.portlet.ReadOnlyException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import javax.portlet.ValidatorException;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextFactory;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import mencobatutorial.constants.MencobatutorialPortletKeys;
-import mencobatutorial.model.Entry;
+import mencobatutorialservice.model.mencobatutorial;
+import mencobatutorialservice.model.mencobatutorialEntry;
+import mencobatutorialservice.service.mencobatutorialEntryLocalService;
+import mencobatutorialservice.service.mencobatutorialLocalService;
 
 /**
  * @author hendr
  */
+
 @Component(
-	immediate = true,
-	property = {
-		"com.liferay.portlet.display-category=category.sample",
-		"com.liferay.portlet.instanceable=true",
-		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/view.jsp",
-		"javax.portlet.name=" + MencobatutorialPortletKeys.Mencobatutorial,
-		"javax.portlet.resource-bundle=content.Language",
-		"javax.portlet.security-role-ref=power-user,user"
-	},
-	service = Portlet.class
+    immediate = true,
+    property = {
+        "com.liferay.portlet.display-category=category.social",
+        "com.liferay.portlet.instanceable=false",
+        "com.liferay.portlet.scopeable=true",
+        "javax.portlet.name=" + MencobatutorialPortletKeys.Mencobatutorial,
+        "javax.portlet.expiration-cache=0",
+        "javax.portlet.init-param.template-path=/",
+        "javax.portlet.init-param.view-template=/mencobatutorialportlet/view.jsp",
+        "javax.portlet.resource-bundle=content.Language",
+        "javax.portlet.security-role-ref=power-user,user",
+        "javax.portlet.supports.mime-type=text/html"
+    },
+    service = Portlet.class
 )
+
 public class MencobatutorialPortlet extends MVCPortlet {
 	
-	public void addEntry(ActionRequest request, ActionResponse response) {
-	    try {
-	        PortletPreferences prefs = request.getPreferences();
+	public void addEntry(ActionRequest request, ActionResponse response)
+            throws PortalException {
 
-	        String[] guestbookEntries = prefs.getValues("guestbook-entries",
-	                new String[1]);
+        ServiceContext serviceContext = ServiceContextFactory.getInstance(
+        	mencobatutorialEntry.class.getName(), request);
 
-	        ArrayList<String> entries = new ArrayList<String>();
+        String userName = ParamUtil.getString(request, "name");
+        String email = ParamUtil.getString(request, "email");
+        String message = ParamUtil.getString(request, "message");
+        long guestbookId = ParamUtil.getLong(request, "guestbookId");
+        long entryId = ParamUtil.getLong(request, "entryId");
 
-	        if (guestbookEntries[0] != null) {
-	            entries = new ArrayList<String>(Arrays.asList(prefs.getValues(
-	                    "guestbook-entries", new String[1])));
-	        }
-
-	        String userName = ParamUtil.getString(request, "name");
-	        String message = ParamUtil.getString(request, "message");
-	        String entry = userName + "^" + message;
-
-	        entries.add(entry);
-
-	        String[] array = entries.toArray(new String[entries.size()]);
-
-	        prefs.setValues("guestbook-entries", array);
-
+	    if (entryId > 0) {
+	
 	        try {
-	            prefs.store();
+	
+	            _mencobatutorialentryLocalService.updateEntry(
+	                serviceContext.getUserId(), guestbookId, entryId, userName,
+	                email, message, serviceContext);
+	
+	            SessionMessages.add(request, "entryAdded");
+	
+	            response.setRenderParameter(
+	                "guestbookId", Long.toString(guestbookId));
+	
 	        }
-	        catch (IOException ex) {
-	            Logger.getLogger(MencobatutorialPortlet.class.getName()).log(
-	                    Level.SEVERE, null, ex);
+	        catch (Exception e) {
+	            System.out.println(e);
+	
+	            SessionErrors.add(request, e.getClass().getName());
+	
+	            PortalUtil.copyRequestParameters(request, response);
+	
+	            response.setRenderParameter(
+	                "mvcPath", "/mencobatutorialportlet/edit_entry.jsp");
 	        }
-	        catch (ValidatorException ex) {
-	            Logger.getLogger(MencobatutorialPortlet.class.getName()).log(
-	                    Level.SEVERE, null, ex);
+	
+	    }
+	    else {
+	
+	        try {
+	            _mencobatutorialentryLocalService.addEntry(
+	                serviceContext.getUserId(), guestbookId, userName, email,
+	                message, serviceContext);
+	
+	            SessionMessages.add(request, "entryAdded");
+	
+	            response.setRenderParameter(
+	                "guestbookId", Long.toString(guestbookId));
+	
 	        }
+	        catch (Exception e) {
+	            SessionErrors.add(request, e.getClass().getName());
+	
+	            PortalUtil.copyRequestParameters(request, response);
+	
+	            response.setRenderParameter(
+	                "mvcPath", "/mencobatutorialportlet/edit_entry.jsp");
+	        }
+	    }
+	}
+	
+	public void deleteEntry(ActionRequest request, ActionResponse response) throws PortalException {
+        long entryId = ParamUtil.getLong(request, "entryId");
+        long guestbookId = ParamUtil.getLong(request, "guestbookId");
 
-	    }
-	    catch (ReadOnlyException ex) {
-	        Logger.getLogger(MencobatutorialPortlet.class.getName()).log(
-	                Level.SEVERE, null, ex);
-	    }
+        ServiceContext serviceContext = ServiceContextFactory.getInstance(
+        	mencobatutorial.class.getName(), request);
+
+        try {
+
+            response.setRenderParameter(
+                "guestbookId", Long.toString(guestbookId));
+
+            _mencobatutorialentryLocalService.deleteEntry(entryId, serviceContext);
+        }
+
+        catch (Exception e) {
+            Logger.getLogger(MencobatutorialPortlet.class.getName()).log(
+                Level.SEVERE, null, e);
+        }
 	}
 	
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
-	    throws PortletException, IOException {
+	        throws IOException, PortletException {
 
-	    PortletPreferences prefs = renderRequest.getPreferences();
-	    String[] guestbookEntries = prefs.getValues("guestbook-entries", new String[1]);
+        try {
+            ServiceContext serviceContext = ServiceContextFactory.getInstance(
+            	mencobatutorial.class.getName(), renderRequest);
 
-	    if (guestbookEntries[0] != null) {
-	        List<Entry> entries = parseEntries(guestbookEntries);
-	        renderRequest.setAttribute("entries", entries);
-	    }
+            long groupId = serviceContext.getScopeGroupId();
 
-	    super.render(renderRequest, renderResponse);
+            long guestbookId = ParamUtil.getLong(renderRequest, "guestbookId");
+
+            List<mencobatutorial> guestbooks = _mencobatutorialLocalService.getGuestbooks(
+                groupId);
+
+            if (guestbooks.isEmpty()) {
+            	mencobatutorial guestbook = _mencobatutorialLocalService.addGuestbook(
+                    serviceContext.getUserId(), "Main", serviceContext);
+
+                guestbookId = guestbook.getGuestbookId();
+            }
+
+            if (guestbookId == 0) {
+                guestbookId = guestbooks.get(0).getGuestbookId();
+            }
+
+            renderRequest.setAttribute("guestbookId", guestbookId);
+        }
+        catch (Exception e) {
+            throw new PortletException(e);
+        }
+
+        super.render(renderRequest, renderResponse);
 	}
+
 	
-	private List<Entry> parseEntries(String[] guestbookEntries) {
-	    List<Entry> entries = new ArrayList<Entry>();
+	@Reference(unbind = "-")
+    protected void setmencobatutorialEntryService(mencobatutorialEntryLocalService mencobatutorialentryLocalService) {
+        _mencobatutorialentryLocalService = mencobatutorialentryLocalService;
+    }
 
-	    for (String entry : guestbookEntries) {
-	        String[] parts = entry.split("\\^", 2);
-	        Entry gbEntry = new Entry(parts[0], parts[1]);
-	        entries.add(gbEntry);
-	    }
+    @Reference(unbind = "-")
+    protected void setmencobatutorialService(mencobatutorialLocalService mencobatutorialLocalService) {
+        _mencobatutorialLocalService = mencobatutorialLocalService;
+    }
 
-	    return entries;
-	}
+    private mencobatutorialEntryLocalService _mencobatutorialentryLocalService;
+    private mencobatutorialLocalService _mencobatutorialLocalService;
 }
