@@ -7,4 +7,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.cmpn"
 	compileOnly project(":modules:mencobatutorialservice:mencobatutorialservice-api")
 	compileOnly project(":modules:mencobatutorialservice:mencobatutorialservice-service")
+	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "2.0.0"
 }

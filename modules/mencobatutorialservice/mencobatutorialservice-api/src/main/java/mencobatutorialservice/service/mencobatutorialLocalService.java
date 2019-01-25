@@ -85,6 +85,9 @@ public interface mencobatutorialLocalService extends BaseLocalService,
 	@Transactional(enabled = false)
 	public mencobatutorial createmencobatutorial(long guestbookId);
 
+	public mencobatutorial deleteGuestbook(long guestbookId,
+		ServiceContext serviceContext) throws PortalException, SystemException;
+
 	/**
 	* Deletes the mencobatutorial with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -297,6 +300,10 @@ public interface mencobatutorialLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
+
+	public mencobatutorial updateGuestbook(long userId, long guestbookId,
+		String name, ServiceContext serviceContext)
+		throws PortalException, SystemException;
 
 	/**
 	* Updates the mencobatutorial in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

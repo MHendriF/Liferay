@@ -67,6 +67,16 @@ public class mencobatutorialLocalServiceWrapper
 		return _mencobatutorialLocalService.createmencobatutorial(guestbookId);
 	}
 
+	@Override
+	public mencobatutorialservice.model.mencobatutorial deleteGuestbook(
+		long guestbookId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialLocalService.deleteGuestbook(guestbookId,
+			serviceContext);
+	}
+
 	/**
 	* Deletes the mencobatutorial with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -354,6 +364,16 @@ public class mencobatutorialLocalServiceWrapper
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _mencobatutorialLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public mencobatutorialservice.model.mencobatutorial updateGuestbook(
+		long userId, long guestbookId, String name,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialLocalService.updateGuestbook(userId,
+			guestbookId, name, serviceContext);
 	}
 
 	/**

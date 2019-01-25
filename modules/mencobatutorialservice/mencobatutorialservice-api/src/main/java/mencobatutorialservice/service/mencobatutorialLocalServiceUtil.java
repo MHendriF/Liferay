@@ -71,6 +71,14 @@ public class mencobatutorialLocalServiceUtil {
 		return getService().createmencobatutorial(guestbookId);
 	}
 
+	public static mencobatutorialservice.model.mencobatutorial deleteGuestbook(
+		long guestbookId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteGuestbook(guestbookId, serviceContext);
+	}
+
 	/**
 	* Deletes the mencobatutorial with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -328,6 +336,15 @@ public class mencobatutorialLocalServiceUtil {
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static mencobatutorialservice.model.mencobatutorial updateGuestbook(
+		long userId, long guestbookId, String name,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateGuestbook(userId, guestbookId, name, serviceContext);
 	}
 
 	/**

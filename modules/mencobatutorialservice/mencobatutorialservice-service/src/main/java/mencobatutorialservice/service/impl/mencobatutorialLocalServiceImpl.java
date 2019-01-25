@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -25,6 +26,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import mencobatutorialservice.exception.GuestbookNameException;
 import mencobatutorialservice.model.mencobatutorial;
+import mencobatutorialservice.model.mencobatutorialEntry;
 import mencobatutorialservice.service.base.mencobatutorialLocalServiceBaseImpl;
 
 /**
@@ -48,6 +50,47 @@ public class mencobatutorialLocalServiceImpl
 	 *
 	 * Never reference this class directly. Always use {@link mencobatutorialservice.service.mencobatutorialLocalServiceUtil} to access the mencobatutorial local service.
 	 */
+	
+	public mencobatutorial updateGuestbook(long userId, long guestbookId,
+	    String name, ServiceContext serviceContext) throws PortalException,
+        SystemException {
+
+        Date now = new Date();
+
+        validate(name);
+
+        mencobatutorial guestbook = getmencobatutorial(guestbookId);
+
+        User user = userLocalService.getUser(userId);
+
+        guestbook.setUserId(userId);
+        guestbook.setUserName(user.getFullName());
+        guestbook.setModifiedDate(serviceContext.getModifiedDate(now));
+        guestbook.setName(name);
+        guestbook.setExpandoBridgeAttributes(serviceContext);
+
+        mencobatutorialPersistence.update(guestbook);
+
+        return guestbook;
+	}
+	
+	public mencobatutorial deleteGuestbook(long guestbookId,
+        ServiceContext serviceContext) throws PortalException,
+        SystemException {
+
+		mencobatutorial guestbook = getmencobatutorial(guestbookId);
+	
+	    List<mencobatutorialEntry> entries = mencobatutorialEntryLocalService.getEntries(
+	                    serviceContext.getScopeGroupId(), guestbookId);
+	
+	    for (mencobatutorialEntry entry : entries) {
+	    	mencobatutorialEntryLocalService.deletemencobatutorialEntry(entry.getEntryId());
+	    }
+	
+	    guestbook = deletemencobatutorial(guestbook);
+	
+	    return guestbook;
+	}
 	
 	public mencobatutorial addGuestbook(
 	    long userId, String name, ServiceContext serviceContext)
