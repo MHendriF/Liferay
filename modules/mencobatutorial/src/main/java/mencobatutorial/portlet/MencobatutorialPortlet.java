@@ -40,7 +40,7 @@ import mencobatutorialservice.service.mencobatutorialLocalService;
         "com.liferay.portlet.display-category=category.social",
         "com.liferay.portlet.instanceable=false",
         "com.liferay.portlet.scopeable=true",
-        "javax.portlet.display-name=mencobatutorial",
+        "javax.portlet.display-name=Tutorial Web",
         "javax.portlet.name=" + MencobatutorialPortletKeys.Mencobatutorial,
         "javax.portlet.expiration-cache=0",
         "javax.portlet.init-param.template-path=/",
@@ -52,7 +52,7 @@ import mencobatutorialservice.service.mencobatutorialLocalService;
     service = Portlet.class
 )
 
-public class MencobatutorialPortlet extends MVCPortlet {
+public class MencobatutorialPortlet<mencobatutorialservice> extends MVCPortlet {
 	
 	public void addEntry(ActionRequest request, ActionResponse response)
             throws PortalException {

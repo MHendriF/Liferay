@@ -25,7 +25,7 @@ import mencobatutorialservice.service.mencobatutorialLocalService;
     property = {
             "com.liferay.portlet.display-category=category.hidden",
             "com.liferay.portlet.scopeable=true",
-            "javax.portlet.display-name=mencobatutorialadmin",
+            "javax.portlet.display-name=Tutorial Admin",
             "javax.portlet.expiration-cache=0",
             "javax.portlet.init-param.portlet-title-based-navigation=true",
             "javax.portlet.init-param.template-path=/",

@@ -5,7 +5,7 @@ package mencobatutorial.constants;
  */
 public class MencobatutorialPortletKeys {
 
-	public static final String Mencobatutorial = "mencobatutorial";
+	public static final String Mencobatutorial = "tutorial liferay";
 	public static final String MencobatutorialAdmin ="mencobatutorialadmin";
 
 }
