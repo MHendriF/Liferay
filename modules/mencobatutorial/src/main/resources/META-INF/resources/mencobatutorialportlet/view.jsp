@@ -17,14 +17,16 @@ long guestbookId = Long.valueOf((Long) renderRequest
 
 </aui:button-row>
 
-<liferay-ui:search-container total="<%=mencobatutorialEntryLocalServiceUtil.getEntriesCount()%>">
+<%-- <liferay-ui:search-container total="<%=mencobatutorialEntryLocalServiceUtil.getEntriesCount()%>"> --%>
+<liferay-ui:search-container total="<%=mencobatutorialEntryLocalServiceUtil.getEntriesCount(scopeGroupId,
+guestbookId) %>">
 <liferay-ui:search-container-results
     results="<%=mencobatutorialEntryLocalServiceUtil.getEntries(scopeGroupId.longValue(),
                     guestbookId, searchContainer.getStart(),
                     searchContainer.getEnd())%>" />
 
 <liferay-ui:search-container-row
-    className="mencobatutorialservice.model.Entry" modelVar="entry">
+    className="mencobatutorialservice.model.mencobatutorialEntry" modelVar="entry">
 
     <liferay-ui:search-container-column-text property="message" />
 
