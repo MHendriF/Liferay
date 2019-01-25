@@ -17,7 +17,6 @@ long guestbookId = Long.valueOf((Long) renderRequest
 
 </aui:button-row>
 
-<%-- <liferay-ui:search-container total="<%=mencobatutorialEntryLocalServiceUtil.getEntriesCount()%>"> --%>
 <liferay-ui:search-container total="<%=mencobatutorialEntryLocalServiceUtil.getEntriesCount(scopeGroupId,
 guestbookId) %>">
 <liferay-ui:search-container-results

@@ -10,6 +10,10 @@
         className="mencobatutorialservice.model.mencobatutorial" modelVar="guestbook">
 
         <liferay-ui:search-container-column-text property="name" />
+        
+        <liferay-ui:search-container-column-text property="createDate" />
+        
+        <liferay-ui:search-container-column-text property="modifiedDate" />
 
         <liferay-ui:search-container-column-jsp
             align="right" 

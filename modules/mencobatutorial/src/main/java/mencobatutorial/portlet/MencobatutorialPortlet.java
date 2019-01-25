@@ -52,7 +52,7 @@ import mencobatutorialservice.service.mencobatutorialLocalService;
     service = Portlet.class
 )
 
-public class MencobatutorialPortlet<mencobatutorialservice> extends MVCPortlet {
+public class MencobatutorialPortlet extends MVCPortlet {
 	
 	public void addEntry(ActionRequest request, ActionResponse response)
             throws PortalException {
