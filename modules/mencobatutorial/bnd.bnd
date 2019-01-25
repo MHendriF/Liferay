@@ -1,0 +1,4 @@
+Bundle-Name: mencobatutorial
+Bundle-SymbolicName: mencobatutorial
+Bundle-Version: 1.0.0
+Export-Package: mencobatutorial.constants
