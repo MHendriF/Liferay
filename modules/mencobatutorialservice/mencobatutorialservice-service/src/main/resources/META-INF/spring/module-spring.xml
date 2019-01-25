@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+	<bean class="mencobatutorialservice.service.impl.mencobatutorialLocalServiceImpl" id="mencobatutorialservice.service.mencobatutorialLocalService" />
+	<bean class="mencobatutorialservice.service.impl.mencobatutorialServiceImpl" id="mencobatutorialservice.service.mencobatutorialService" />
+	<bean class="mencobatutorialservice.service.persistence.impl.mencobatutorialPersistenceImpl" id="mencobatutorialservice.service.persistence.mencobatutorialPersistence" parent="basePersistence" />
+	<bean class="mencobatutorialservice.service.impl.mencobatutorialEntryLocalServiceImpl" id="mencobatutorialservice.service.mencobatutorialEntryLocalService" />
+	<bean class="mencobatutorialservice.service.impl.mencobatutorialEntryServiceImpl" id="mencobatutorialservice.service.mencobatutorialEntryService" />
+	<bean class="mencobatutorialservice.service.persistence.impl.mencobatutorialEntryPersistenceImpl" id="mencobatutorialservice.service.persistence.mencobatutorialEntryPersistence" parent="basePersistence" />
+</beans>

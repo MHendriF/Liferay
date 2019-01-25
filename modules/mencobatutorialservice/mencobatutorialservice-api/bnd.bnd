@@ -1,0 +1,10 @@
+Bundle-Name: mencobatutorialservice-api
+Bundle-SymbolicName: mencobatutorialservice.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	mencobatutorialservice.exception,\
+	mencobatutorialservice.model,\
+	mencobatutorialservice.service,\
+	mencobatutorialservice.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../mencobatutorialservice-service/service.xml
