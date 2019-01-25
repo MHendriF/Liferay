@@ -4,7 +4,7 @@
 
 long entryId = ParamUtil.getLong(renderRequest, "entryId");
 
-Entry entry = null;
+mencobatutorialEntry entry = null;
 if (entryId > 0) {
   entry = mencobatutorialEntryLocalServiceUtil.getmencobatutorialEntry(entryId);
 }

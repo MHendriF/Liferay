@@ -27,10 +27,12 @@ guestbookId) %>">
 
 <liferay-ui:search-container-row
     className="mencobatutorialservice.model.mencobatutorialEntry" modelVar="entry">
-
+	
+	<liferay-ui:search-container-column-text property="name" />
+	
     <liferay-ui:search-container-column-text property="message" />
-
-    <liferay-ui:search-container-column-text property="name" />
+    
+    <liferay-ui:search-container-column-text property="email" />
 
 </liferay-ui:search-container-row>
 
