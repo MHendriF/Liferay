@@ -38,6 +38,8 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import guestbook.model.Entry;
+
 import java.io.Serializable;
 
 import java.util.List;

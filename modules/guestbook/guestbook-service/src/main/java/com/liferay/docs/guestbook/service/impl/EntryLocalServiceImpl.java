@@ -20,7 +20,6 @@ import java.util.List;
 import com.liferay.docs.guestbook.exception.EntryEmailException;
 import com.liferay.docs.guestbook.exception.EntryMessageException;
 import com.liferay.docs.guestbook.exception.EntryNameException;
-import com.liferay.docs.guestbook.model.Entry;
 import com.liferay.docs.guestbook.service.base.EntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -28,6 +27,8 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+
+import guestbook.model.Entry;
 
 /**
  * The implementation of the entry local service.

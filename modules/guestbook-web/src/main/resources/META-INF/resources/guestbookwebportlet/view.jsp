@@ -17,7 +17,7 @@ long guestbookId = Long.valueOf((Long) renderRequest
 
 </aui:button-row>
 
-<%-- <liferay-ui:search-container total="<%=EntryLocalServiceUtil.getEntriesCount(scopeGroupId,
+<liferay-ui:search-container total="<%=EntryLocalServiceUtil.getEntriesCount(scopeGroupId,
 guestbookId)%>">
 <liferay-ui:search-container-results
     results="<%=EntryLocalServiceUtil.getEntries(scopeGroupId.longValue(),
@@ -25,7 +25,7 @@ guestbookId)%>">
                     searchContainer.getEnd())%>" />
 
 <liferay-ui:search-container-row
-    className="com.liferay.docs.guestbook.model.Entry" modelVar="entry">
+    className="guestbook.model.Entry" modelVar="entry">
 
     <liferay-ui:search-container-column-text property="message" />
 
@@ -35,4 +35,4 @@ guestbookId)%>">
 
 <liferay-ui:search-iterator />
 
-</liferay-ui:search-container> --%>
+</liferay-ui:search-container>

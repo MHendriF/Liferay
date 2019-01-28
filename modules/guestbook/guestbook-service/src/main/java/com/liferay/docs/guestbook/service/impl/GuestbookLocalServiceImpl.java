@@ -18,13 +18,14 @@ import java.util.Date;
 import java.util.List;
 
 import com.liferay.docs.guestbook.exception.GuestbookNameException;
-import com.liferay.docs.guestbook.model.Guestbook;
 import com.liferay.docs.guestbook.service.base.GuestbookLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+
+import guestbook.model.Guestbook;
 
 /**
  * The implementation of the guestbook local service.

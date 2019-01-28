@@ -17,10 +17,10 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="com.liferay.portal.kernel.model.PersistedModel" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
-<%@ page import="com.liferay.docs.guestbook.model.Guestbook" %>
+<%@ page import="guestbook.model.Guestbook" %>
 <%@ page import="com.liferay.docs.guestbook.service.EntryLocalServiceUtil" %>
 <%@ page import="com.liferay.docs.guestbook.service.GuestbookLocalServiceUtil" %>
-<%@ page import="com.liferay.docs.guestbook.model.Entry" %> 
+<%@ page import="guestbook.model.Entry" %> 
 
 <liferay-theme:defineObjects />
 
