@@ -14,7 +14,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
+//import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 
 import javax.portlet.PortletRequest;
@@ -76,7 +76,7 @@ public class mencobatutorialAssetRendererFactory extends BaseAssetRendererFactor
 
           portletURL = liferayPortletResponse.createLiferayPortletURL(getControlPanelPlid(themeDisplay),
         		  MencobatutorialPortletKeys.GUESTBOOK, PortletRequest.RENDER_PHASE);
-          portletURL.setParameter("mvcRenderCommandName", "/guestbookwebportlet/edit_guestbook");
+          portletURL.setParameter("mvcRenderCommandName", "/mencobatutorialportlet/edit_guestbook");
           portletURL.setParameter("showback", Boolean.FALSE.toString());
         } catch (PortalException e) {
         }
@@ -94,7 +94,7 @@ public class mencobatutorialAssetRendererFactory extends BaseAssetRendererFactor
           return "bookmarks";
       }
 
-    @Reference(target = "(osgi.web.symbolicname=com.liferay.docs.guestbook.portlet)",
+    @Reference(target = "(osgi.web.symbolicname=mencobatutorial.portlet)",
             unbind = "-")
     public void setServletContext(ServletContext servletContext) {
             _servletContext = servletContext;
