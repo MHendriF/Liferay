@@ -51,75 +51,75 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	 */
 	
 	public Entry addEntry(
-		    long userId, long guestbookId, String name, String email,
-		    String message, ServiceContext serviceContext)
-		    throws PortalException {
+	    long userId, long guestbookId, String name, String email,
+	    String message, ServiceContext serviceContext)
+	    throws PortalException {
 
-		    long groupId = serviceContext.getScopeGroupId();
+	    long groupId = serviceContext.getScopeGroupId();
 
-		    User user = userLocalService.getUserById(userId);
+	    User user = userLocalService.getUserById(userId);
 
-		    Date now = new Date();
+	    Date now = new Date();
 
-		    validate(name, email, message);
+	    validate(name, email, message);
 
-		    long entryId = counterLocalService.increment();
+	    long entryId = counterLocalService.increment();
 
-		    Entry entry = entryPersistence.create(entryId);
+	    Entry entry = entryPersistence.create(entryId);
 
-		    entry.setUuid(serviceContext.getUuid());
-		    entry.setUserId(userId);
-		    entry.setGroupId(groupId);
-		    entry.setCompanyId(user.getCompanyId());
-		    entry.setUserName(user.getFullName());
-		    entry.setCreateDate(serviceContext.getCreateDate(now));
-		    entry.setModifiedDate(serviceContext.getModifiedDate(now));
-		    entry.setExpandoBridgeAttributes(serviceContext);
-		    entry.setGuestbookId(guestbookId);
-		    entry.setName(name);
-		    entry.setEmail(email);
-		    entry.setMessage(message);
+	    entry.setUuid(serviceContext.getUuid());
+	    entry.setUserId(userId);
+	    entry.setGroupId(groupId);
+	    entry.setCompanyId(user.getCompanyId());
+	    entry.setUserName(user.getFullName());
+	    entry.setCreateDate(serviceContext.getCreateDate(now));
+	    entry.setModifiedDate(serviceContext.getModifiedDate(now));
+	    entry.setExpandoBridgeAttributes(serviceContext);
+	    entry.setGuestbookId(guestbookId);
+	    entry.setName(name);
+	    entry.setEmail(email);
+	    entry.setMessage(message);
 
-		    entryPersistence.update(entry);
+	    entryPersistence.update(entry);
 
-		    return entry;
-		}
+	    return entry;
+	}
 	
 	public Entry updateEntry (
-		    long userId, long guestbookId, long entryId, String name, String email,
-		    String message, ServiceContext serviceContext)
-		    throws PortalException, SystemException {
+	    long userId, long guestbookId, long entryId, String name, String email,
+	    String message, ServiceContext serviceContext)
+	    throws PortalException, SystemException {
 
-		    Date now = new Date();
+	    Date now = new Date();
 
-		    validate(name, email, message);
+	    validate(name, email, message);
 
-		    Entry entry = getEntry(entryId);
+	    Entry entry = getEntry(entryId);
 
-		    User user = userLocalService.getUserById(userId);
+	    User user = userLocalService.getUserById(userId);
 
-		    entry.setUserId(userId);
-		    entry.setUserName(user.getFullName());
-		    entry.setModifiedDate(serviceContext.getModifiedDate(now));
-		    entry.setName(name);
-		    entry.setEmail(email);
-		    entry.setMessage(message);
-		    entry.setExpandoBridgeAttributes(serviceContext);
+	    entry.setUserId(userId);
+	    entry.setUserName(user.getFullName());
+	    entry.setModifiedDate(serviceContext.getModifiedDate(now));
+	    entry.setName(name);
+	    entry.setEmail(email);
+	    entry.setMessage(message);
+	    entry.setExpandoBridgeAttributes(serviceContext);
 
-		    entryPersistence.update(entry);
+	    entryPersistence.update(entry);
 
-		    return entry;
-		}
+	    return entry;
+	}
 	
 	public Entry deleteEntry (long entryId, ServiceContext serviceContext)
-		    throws PortalException {
+	    throws PortalException {
 
-		    Entry entry = getEntry(entryId);
+	    Entry entry = getEntry(entryId);
 
-		    entry = deleteEntry(entryId);
+	    entry = deleteEntry(entryId);
 
-		    return entry;
-		}
+	    return entry;
+	}
 	
 	public List<Entry> getEntries(long groupId, long guestbookId) {
 	    return entryPersistence.findByG_G(groupId, guestbookId);
