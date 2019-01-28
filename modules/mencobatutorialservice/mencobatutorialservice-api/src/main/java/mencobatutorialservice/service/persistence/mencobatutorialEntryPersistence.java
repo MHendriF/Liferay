@@ -515,6 +515,282 @@ public interface mencobatutorialEntryPersistence extends BasePersistence<mencoba
 	public int countByG_G(long groupId, long guestbookId);
 
 	/**
+	* Returns all the mencobatutorial entries where status = &#63;.
+	*
+	* @param status the status
+	* @return the matching mencobatutorial entries
+	*/
+	public java.util.List<mencobatutorialEntry> findByStatus(int status);
+
+	/**
+	* Returns a range of all the mencobatutorial entries where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @return the range of matching mencobatutorial entries
+	*/
+	public java.util.List<mencobatutorialEntry> findByStatus(int status,
+		int start, int end);
+
+	/**
+	* Returns an ordered range of all the mencobatutorial entries where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching mencobatutorial entries
+	*/
+	public java.util.List<mencobatutorialEntry> findByStatus(int status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the mencobatutorial entries where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching mencobatutorial entries
+	*/
+	public java.util.List<mencobatutorialEntry> findByStatus(int status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
+	* Returns the first mencobatutorial entry in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching mencobatutorial entry
+	* @throws NoSuchmencobatutorialEntryException if a matching mencobatutorial entry could not be found
+	*/
+	public mencobatutorialEntry findByStatus_First(int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator)
+		throws NoSuchmencobatutorialEntryException;
+
+	/**
+	* Returns the first mencobatutorial entry in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching mencobatutorial entry, or <code>null</code> if a matching mencobatutorial entry could not be found
+	*/
+	public mencobatutorialEntry fetchByStatus_First(int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator);
+
+	/**
+	* Returns the last mencobatutorial entry in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching mencobatutorial entry
+	* @throws NoSuchmencobatutorialEntryException if a matching mencobatutorial entry could not be found
+	*/
+	public mencobatutorialEntry findByStatus_Last(int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator)
+		throws NoSuchmencobatutorialEntryException;
+
+	/**
+	* Returns the last mencobatutorial entry in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching mencobatutorial entry, or <code>null</code> if a matching mencobatutorial entry could not be found
+	*/
+	public mencobatutorialEntry fetchByStatus_Last(int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator);
+
+	/**
+	* Returns the mencobatutorial entries before and after the current mencobatutorial entry in the ordered set where status = &#63;.
+	*
+	* @param entryId the primary key of the current mencobatutorial entry
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next mencobatutorial entry
+	* @throws NoSuchmencobatutorialEntryException if a mencobatutorial entry with the primary key could not be found
+	*/
+	public mencobatutorialEntry[] findByStatus_PrevAndNext(long entryId,
+		int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator)
+		throws NoSuchmencobatutorialEntryException;
+
+	/**
+	* Removes all the mencobatutorial entries where status = &#63; from the database.
+	*
+	* @param status the status
+	*/
+	public void removeByStatus(int status);
+
+	/**
+	* Returns the number of mencobatutorial entries where status = &#63;.
+	*
+	* @param status the status
+	* @return the number of matching mencobatutorial entries
+	*/
+	public int countByStatus(int status);
+
+	/**
+	* Returns all the mencobatutorial entries where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @return the matching mencobatutorial entries
+	*/
+	public java.util.List<mencobatutorialEntry> findByG_S(long groupId,
+		int status);
+
+	/**
+	* Returns a range of all the mencobatutorial entries where groupId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @return the range of matching mencobatutorial entries
+	*/
+	public java.util.List<mencobatutorialEntry> findByG_S(long groupId,
+		int status, int start, int end);
+
+	/**
+	* Returns an ordered range of all the mencobatutorial entries where groupId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching mencobatutorial entries
+	*/
+	public java.util.List<mencobatutorialEntry> findByG_S(long groupId,
+		int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the mencobatutorial entries where groupId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching mencobatutorial entries
+	*/
+	public java.util.List<mencobatutorialEntry> findByG_S(long groupId,
+		int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
+	* Returns the first mencobatutorial entry in the ordered set where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching mencobatutorial entry
+	* @throws NoSuchmencobatutorialEntryException if a matching mencobatutorial entry could not be found
+	*/
+	public mencobatutorialEntry findByG_S_First(long groupId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator)
+		throws NoSuchmencobatutorialEntryException;
+
+	/**
+	* Returns the first mencobatutorial entry in the ordered set where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching mencobatutorial entry, or <code>null</code> if a matching mencobatutorial entry could not be found
+	*/
+	public mencobatutorialEntry fetchByG_S_First(long groupId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator);
+
+	/**
+	* Returns the last mencobatutorial entry in the ordered set where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching mencobatutorial entry
+	* @throws NoSuchmencobatutorialEntryException if a matching mencobatutorial entry could not be found
+	*/
+	public mencobatutorialEntry findByG_S_Last(long groupId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator)
+		throws NoSuchmencobatutorialEntryException;
+
+	/**
+	* Returns the last mencobatutorial entry in the ordered set where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching mencobatutorial entry, or <code>null</code> if a matching mencobatutorial entry could not be found
+	*/
+	public mencobatutorialEntry fetchByG_S_Last(long groupId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator);
+
+	/**
+	* Returns the mencobatutorial entries before and after the current mencobatutorial entry in the ordered set where groupId = &#63; and status = &#63;.
+	*
+	* @param entryId the primary key of the current mencobatutorial entry
+	* @param groupId the group ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next mencobatutorial entry
+	* @throws NoSuchmencobatutorialEntryException if a mencobatutorial entry with the primary key could not be found
+	*/
+	public mencobatutorialEntry[] findByG_S_PrevAndNext(long entryId,
+		long groupId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator<mencobatutorialEntry> orderByComparator)
+		throws NoSuchmencobatutorialEntryException;
+
+	/**
+	* Removes all the mencobatutorial entries where groupId = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	*/
+	public void removeByG_S(long groupId, int status);
+
+	/**
+	* Returns the number of mencobatutorial entries where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @return the number of matching mencobatutorial entries
+	*/
+	public int countByG_S(long groupId, int status);
+
+	/**
 	* Caches the mencobatutorial entry in the entity cache if it is enabled.
 	*
 	* @param mencobatutorialEntry the mencobatutorial entry
