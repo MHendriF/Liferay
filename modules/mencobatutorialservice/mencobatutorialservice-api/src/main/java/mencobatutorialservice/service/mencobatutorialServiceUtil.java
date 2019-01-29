@@ -42,6 +42,38 @@ public class mencobatutorialServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link mencobatutorialservice.service.impl.mencobatutorialServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static mencobatutorialservice.model.mencobatutorial addGuestbook(
+		long userId, String name,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.exception.PortalException {
+		return getService().addGuestbook(userId, name, serviceContext);
+	}
+
+	public static mencobatutorialservice.model.mencobatutorial deleteGuestbook(
+		long guestbookId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteGuestbook(guestbookId, serviceContext);
+	}
+
+	public static java.util.List<mencobatutorialservice.model.mencobatutorial> getGuestbooks(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGuestbooks(groupId);
+	}
+
+	public static java.util.List<mencobatutorialservice.model.mencobatutorial> getGuestbooks(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGuestbooks(groupId, start, end);
+	}
+
+	public static int getGuestbooksCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGuestbooksCount(groupId);
+	}
 
 	/**
 	* Returns the OSGi service identifier.
@@ -50,6 +82,15 @@ public class mencobatutorialServiceUtil {
 	*/
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static mencobatutorialservice.model.mencobatutorial updateGuestbook(
+		long userId, long guestbookId, String name,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateGuestbook(userId, guestbookId, name, serviceContext);
 	}
 
 	public static mencobatutorialService getService() {

@@ -16,9 +16,16 @@ package mencobatutorialservice.service.http;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import mencobatutorialservice.service.mencobatutorialEntryServiceUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * {@link mencobatutorialservice.service.mencobatutorialEntryServiceUtil} service utility. The
+ * {@link mencobatutorialEntryServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +60,110 @@ import aQute.bnd.annotation.ProviderType;
  * @author liferay
  * @see mencobatutorialEntryServiceHttp
  * @see mencobatutorialservice.model.mencobatutorialEntrySoap
- * @see mencobatutorialservice.service.mencobatutorialEntryServiceUtil
+ * @see mencobatutorialEntryServiceUtil
  * @generated
  */
 @ProviderType
 public class mencobatutorialEntryServiceSoap {
+	public static mencobatutorialservice.model.mencobatutorialEntrySoap addEntry(
+		long userId, long guestbookId, String name, String email,
+		String message,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			mencobatutorialservice.model.mencobatutorialEntry returnValue = mencobatutorialEntryServiceUtil.addEntry(userId,
+					guestbookId, name, email, message, serviceContext);
+
+			return mencobatutorialservice.model.mencobatutorialEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static mencobatutorialservice.model.mencobatutorialEntrySoap deleteEntry(
+		long entryId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			mencobatutorialservice.model.mencobatutorialEntry returnValue = mencobatutorialEntryServiceUtil.deleteEntry(entryId,
+					serviceContext);
+
+			return mencobatutorialservice.model.mencobatutorialEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static mencobatutorialservice.model.mencobatutorialEntrySoap[] getEntries(
+		long groupId, long guestbookId) throws RemoteException {
+		try {
+			java.util.List<mencobatutorialservice.model.mencobatutorialEntry> returnValue =
+				mencobatutorialEntryServiceUtil.getEntries(groupId, guestbookId);
+
+			return mencobatutorialservice.model.mencobatutorialEntrySoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static mencobatutorialservice.model.mencobatutorialEntrySoap[] getEntries(
+		long groupId, long guestbookId, int start, int end)
+		throws RemoteException {
+		try {
+			java.util.List<mencobatutorialservice.model.mencobatutorialEntry> returnValue =
+				mencobatutorialEntryServiceUtil.getEntries(groupId,
+					guestbookId, start, end);
+
+			return mencobatutorialservice.model.mencobatutorialEntrySoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getEntriesCount(long groupId, long guestbookId)
+		throws RemoteException {
+		try {
+			int returnValue = mencobatutorialEntryServiceUtil.getEntriesCount(groupId,
+					guestbookId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static mencobatutorialservice.model.mencobatutorialEntrySoap updateEntry(
+		long userId, long guestbookId, long entryId, String name, String email,
+		String message,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			mencobatutorialservice.model.mencobatutorialEntry returnValue = mencobatutorialEntryServiceUtil.updateEntry(userId,
+					guestbookId, entryId, name, email, message, serviceContext);
+
+			return mencobatutorialservice.model.mencobatutorialEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(mencobatutorialEntryServiceSoap.class);
 }

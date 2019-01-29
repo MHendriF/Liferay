@@ -16,9 +16,16 @@ package mencobatutorialservice.service.http;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import mencobatutorialservice.service.mencobatutorialServiceUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * {@link mencobatutorialservice.service.mencobatutorialServiceUtil} service utility. The
+ * {@link mencobatutorialServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +60,105 @@ import aQute.bnd.annotation.ProviderType;
  * @author liferay
  * @see mencobatutorialServiceHttp
  * @see mencobatutorialservice.model.mencobatutorialSoap
- * @see mencobatutorialservice.service.mencobatutorialServiceUtil
+ * @see mencobatutorialServiceUtil
  * @generated
  */
 @ProviderType
 public class mencobatutorialServiceSoap {
+	public static mencobatutorialservice.model.mencobatutorialSoap addGuestbook(
+		long userId, String name,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			mencobatutorialservice.model.mencobatutorial returnValue = mencobatutorialServiceUtil.addGuestbook(userId,
+					name, serviceContext);
+
+			return mencobatutorialservice.model.mencobatutorialSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static mencobatutorialservice.model.mencobatutorialSoap deleteGuestbook(
+		long guestbookId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			mencobatutorialservice.model.mencobatutorial returnValue = mencobatutorialServiceUtil.deleteGuestbook(guestbookId,
+					serviceContext);
+
+			return mencobatutorialservice.model.mencobatutorialSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static mencobatutorialservice.model.mencobatutorialSoap[] getGuestbooks(
+		long groupId) throws RemoteException {
+		try {
+			java.util.List<mencobatutorialservice.model.mencobatutorial> returnValue =
+				mencobatutorialServiceUtil.getGuestbooks(groupId);
+
+			return mencobatutorialservice.model.mencobatutorialSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static mencobatutorialservice.model.mencobatutorialSoap[] getGuestbooks(
+		long groupId, int start, int end) throws RemoteException {
+		try {
+			java.util.List<mencobatutorialservice.model.mencobatutorial> returnValue =
+				mencobatutorialServiceUtil.getGuestbooks(groupId, start, end);
+
+			return mencobatutorialservice.model.mencobatutorialSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getGuestbooksCount(long groupId)
+		throws RemoteException {
+		try {
+			int returnValue = mencobatutorialServiceUtil.getGuestbooksCount(groupId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static mencobatutorialservice.model.mencobatutorialSoap updateGuestbook(
+		long userId, long guestbookId, String name,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			mencobatutorialservice.model.mencobatutorial returnValue = mencobatutorialServiceUtil.updateGuestbook(userId,
+					guestbookId, name, serviceContext);
+
+			return mencobatutorialservice.model.mencobatutorialSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(mencobatutorialServiceSoap.class);
 }

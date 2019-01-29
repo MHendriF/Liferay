@@ -21,9 +21,15 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import mencobatutorialservice.model.mencobatutorialEntry;
+
+import java.util.List;
 
 /**
  * Provides the remote service interface for mencobatutorialEntry. Methods of this
@@ -49,6 +55,24 @@ public interface mencobatutorialEntryService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link mencobatutorialEntryServiceUtil} to access the mencobatutorial entry remote service. Add custom service methods to {@link mencobatutorialservice.service.impl.mencobatutorialEntryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public mencobatutorialEntry addEntry(long userId, long guestbookId,
+		String name, String email, String message, ServiceContext serviceContext)
+		throws PortalException, SystemException;
+
+	public mencobatutorialEntry deleteEntry(long entryId,
+		ServiceContext serviceContext) throws PortalException, SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<mencobatutorialEntry> getEntries(long groupId, long guestbookId)
+		throws SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<mencobatutorialEntry> getEntries(long groupId,
+		long guestbookId, int start, int end) throws SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getEntriesCount(long groupId, long guestbookId)
+		throws SystemException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -56,4 +80,8 @@ public interface mencobatutorialEntryService extends BaseService {
 	* @return the OSGi service identifier
 	*/
 	public String getOSGiServiceIdentifier();
+
+	public mencobatutorialEntry updateEntry(long userId, long guestbookId,
+		long entryId, String name, String email, String message,
+		ServiceContext serviceContext) throws PortalException, SystemException;
 }

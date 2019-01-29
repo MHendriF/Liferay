@@ -34,6 +34,47 @@ public class mencobatutorialEntryServiceWrapper
 		_mencobatutorialEntryService = mencobatutorialEntryService;
 	}
 
+	@Override
+	public mencobatutorialservice.model.mencobatutorialEntry addEntry(
+		long userId, long guestbookId, String name, String email,
+		String message,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialEntryService.addEntry(userId, guestbookId, name,
+			email, message, serviceContext);
+	}
+
+	@Override
+	public mencobatutorialservice.model.mencobatutorialEntry deleteEntry(
+		long entryId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialEntryService.deleteEntry(entryId, serviceContext);
+	}
+
+	@Override
+	public java.util.List<mencobatutorialservice.model.mencobatutorialEntry> getEntries(
+		long groupId, long guestbookId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialEntryService.getEntries(groupId, guestbookId);
+	}
+
+	@Override
+	public java.util.List<mencobatutorialservice.model.mencobatutorialEntry> getEntries(
+		long groupId, long guestbookId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialEntryService.getEntries(groupId, guestbookId,
+			start, end);
+	}
+
+	@Override
+	public int getEntriesCount(long groupId, long guestbookId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialEntryService.getEntriesCount(groupId, guestbookId);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -42,6 +83,17 @@ public class mencobatutorialEntryServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _mencobatutorialEntryService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public mencobatutorialservice.model.mencobatutorialEntry updateEntry(
+		long userId, long guestbookId, long entryId, String name, String email,
+		String message,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialEntryService.updateEntry(userId, guestbookId,
+			entryId, name, email, message, serviceContext);
 	}
 
 	@Override

@@ -33,6 +33,45 @@ public class mencobatutorialServiceWrapper implements mencobatutorialService,
 		_mencobatutorialService = mencobatutorialService;
 	}
 
+	@Override
+	public mencobatutorialservice.model.mencobatutorial addGuestbook(
+		long userId, String name,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.exception.PortalException {
+		return _mencobatutorialService.addGuestbook(userId, name, serviceContext);
+	}
+
+	@Override
+	public mencobatutorialservice.model.mencobatutorial deleteGuestbook(
+		long guestbookId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialService.deleteGuestbook(guestbookId,
+			serviceContext);
+	}
+
+	@Override
+	public java.util.List<mencobatutorialservice.model.mencobatutorial> getGuestbooks(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialService.getGuestbooks(groupId);
+	}
+
+	@Override
+	public java.util.List<mencobatutorialservice.model.mencobatutorial> getGuestbooks(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialService.getGuestbooks(groupId, start, end);
+	}
+
+	@Override
+	public int getGuestbooksCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialService.getGuestbooksCount(groupId);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -41,6 +80,16 @@ public class mencobatutorialServiceWrapper implements mencobatutorialService,
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _mencobatutorialService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public mencobatutorialservice.model.mencobatutorial updateGuestbook(
+		long userId, long guestbookId, String name,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mencobatutorialService.updateGuestbook(userId, guestbookId,
+			name, serviceContext);
 	}
 
 	@Override

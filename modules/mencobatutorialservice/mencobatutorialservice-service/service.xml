@@ -5,7 +5,7 @@
 	<author>liferay</author>
     <namespace>GB</namespace>
     
-    <entity name="mencobatutorial" local-service="true" uuid="true">
+    <entity name="mencobatutorial" local-service="true" remote-service="true" uuid="true">
 		<!-- PK fields -->
 		<column name="guestbookId" primary="true" type="long" />
 		<!-- Group instance -->
@@ -41,7 +41,7 @@
 		<reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
 	</entity>
 	
-	<entity name="mencobatutorialEntry" local-service="true" uuid="true">
+	<entity name="mencobatutorialEntry" local-service="true" remote-service="true" uuid="true">
 	
 		<column name="entryId" primary="true" type="long" />
 

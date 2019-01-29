@@ -72,7 +72,21 @@ public class mencobatutorialEntryLocalServiceImpl
 	    long entryId = counterLocalService.increment();
 
 	    mencobatutorialEntry entry = mencobatutorialEntryPersistence.create(entryId);
+	    
+	    /////////
+	    AssetEntry assetEntry = assetEntryLocalService.updateEntry(userId,
+                groupId, entry.getCreateDate(), entry.getModifiedDate(),
+                mencobatutorialEntry.class.getName(), entryId, entry.getUuid(), 0,
+                serviceContext.getAssetCategoryIds(),
+                serviceContext.getAssetTagNames(), true, true, null, null, null, null,
+                ContentTypes.TEXT_HTML, entry.getMessage(), null, null, null,
+                null, 0, 0, null);
 
+		assetLinkLocalService.updateLinks(userId, assetEntry.getEntryId(),
+                serviceContext.getAssetLinkEntryIds(),
+                AssetLinkConstants.TYPE_RELATED);
+		/////////
+		
 	    entry.setUuid(serviceContext.getUuid());
 	    entry.setUserId(userId);
 	    entry.setGroupId(groupId);
@@ -88,19 +102,6 @@ public class mencobatutorialEntryLocalServiceImpl
 
 	    mencobatutorialEntryPersistence.update(entry);
 	    
-	    ////////
-	    AssetEntry assetEntry = assetEntryLocalService.updateEntry(userId,
-                groupId, entry.getCreateDate(), entry.getModifiedDate(),
-                mencobatutorialEntry.class.getName(), entryId, entry.getUuid(), 0,
-                serviceContext.getAssetCategoryIds(),
-                serviceContext.getAssetTagNames(), true, true, null, null, null, null,
-                ContentTypes.TEXT_HTML, entry.getMessage(), null, null, null,
-                null, 0, 0, null);
-
-		assetLinkLocalService.updateLinks(userId, assetEntry.getEntryId(),
-                serviceContext.getAssetLinkEntryIds(),
-                AssetLinkConstants.TYPE_RELATED);
-
 	    return entry;
 	}
 	
@@ -114,7 +115,24 @@ public class mencobatutorialEntryLocalServiceImpl
 	    validate(name, email, message);
 
 	    mencobatutorialEntry entry = getmencobatutorialEntry(entryId);
+	    
+	    ///////////
+	    AssetEntry assetEntry = assetEntryLocalService.updateEntry(userId,
+              serviceContext.getScopeGroupId(),
+              entry.getCreateDate(), entry.getModifiedDate(),
+              mencobatutorialEntry.class.getName(), entryId, entry.getUuid(),
+              0, serviceContext.getAssetCategoryIds(),
+              serviceContext.getAssetTagNames(), true, true,
+              entry.getCreateDate(), null, null, null,
+              ContentTypes.TEXT_HTML, entry.getMessage(), null,
+              null, null, null, 0, 0,
+              serviceContext.getAssetPriority());
 
+	    assetLinkLocalService.updateLinks(userId, assetEntry.getEntryId(),
+              serviceContext.getAssetLinkEntryIds(),
+              AssetLinkConstants.TYPE_RELATED);
+	    /////////
+  	
 	    User user = userLocalService.getUserById(userId);
 
 	    entry.setUserId(userId);
@@ -126,23 +144,6 @@ public class mencobatutorialEntryLocalServiceImpl
 	    entry.setExpandoBridgeAttributes(serviceContext);
 
 	    mencobatutorialEntryPersistence.update(entry);
-	    
-	    
-	    ///////////
-	    AssetEntry assetEntry = assetEntryLocalService.updateEntry(userId,
-                serviceContext.getScopeGroupId(),
-                entry.getCreateDate(), entry.getModifiedDate(),
-                mencobatutorialEntry.class.getName(), entryId, entry.getUuid(),
-                0, serviceContext.getAssetCategoryIds(),
-                serviceContext.getAssetTagNames(), true, true,
-                entry.getCreateDate(), null, null, null,
-                ContentTypes.TEXT_HTML, entry.getMessage(), null,
-                null, null, null, 0, 0,
-                serviceContext.getAssetPriority());
-
-    	assetLinkLocalService.updateLinks(userId, assetEntry.getEntryId(),
-                serviceContext.getAssetLinkEntryIds(),
-                AssetLinkConstants.TYPE_RELATED);
 
 	    return entry;
 	}
@@ -151,16 +152,17 @@ public class mencobatutorialEntryLocalServiceImpl
 	    throws PortalException {
 
 		mencobatutorialEntry entry = getmencobatutorialEntry(entryId);
-
-	    entry = deletemencobatutorialEntry(entryId);
-	    
-	    /////////////////////
+		
+		/////////////////////
 	    AssetEntry assetEntry = assetEntryLocalService.fetchEntry(
 	    		mencobatutorialEntry.class.getName(), entryId);
 
 	    assetLinkLocalService.deleteLinks(assetEntry.getEntryId());
 	
 		assetEntryLocalService.deleteEntry(assetEntry);
+		///////////////////
+		
+	    entry = deletemencobatutorialEntry(entryId);
 
 	    return entry;
 	}

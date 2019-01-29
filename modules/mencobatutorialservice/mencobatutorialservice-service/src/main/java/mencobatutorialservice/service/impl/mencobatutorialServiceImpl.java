@@ -14,6 +14,15 @@
 
 package mencobatutorialservice.service.impl;
 
+import java.util.List;
+
+//import org.omg.IOP.ServiceContext;
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.service.ServiceContext;
+
+import mencobatutorialservice.model.mencobatutorial;
 import mencobatutorialservice.service.base.mencobatutorialServiceBaseImpl;
 
 /**
@@ -36,4 +45,39 @@ public class mencobatutorialServiceImpl extends mencobatutorialServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link mencobatutorialservice.service.mencobatutorialServiceUtil} to access the mencobatutorial remote service.
 	 */
+	
+	public mencobatutorial addGuestbook(long userId, String name,
+		    ServiceContext serviceContext) throws SystemException,
+		    PortalException {
+
+		    return mencobatutorialLocalService.addGuestbook(userId, name, serviceContext);
+	}
+
+	public mencobatutorial deleteGuestbook(long guestbookId,
+	    ServiceContext serviceContext) throws PortalException,
+	    SystemException {
+
+	    return mencobatutorialLocalService.deleteGuestbook(guestbookId, serviceContext);
+	}
+
+	public List<mencobatutorial> getGuestbooks(long groupId) throws SystemException {
+	        return mencobatutorialLocalService.getGuestbooks(groupId);
+	}
+
+	public List<mencobatutorial> getGuestbooks(long groupId, int start, int end)
+	                throws SystemException {
+	        return mencobatutorialLocalService.getGuestbooks(groupId, start, end);
+	}
+
+	public int getGuestbooksCount(long groupId) throws SystemException {
+	        return mencobatutorialLocalService.getGuestbooksCount(groupId);
+	}
+
+	public mencobatutorial updateGuestbook(long userId, long guestbookId,
+	    String name, ServiceContext serviceContext) throws PortalException,
+	    SystemException {
+
+	    return mencobatutorialLocalService.updateGuestbook(userId, guestbookId,
+	        name, serviceContext);
+	}
 }
