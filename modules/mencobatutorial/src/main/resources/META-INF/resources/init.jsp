@@ -22,6 +22,12 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="mencobatutorialservice.service.mencobatutorialLocalServiceUtil" %>
 <%@ page import="mencobatutorialservice.model.mencobatutorialEntry" %> 
 
+<%@ page import="mencobatutorialservice.service.permission.mencobatutorialModelPermission" %>
+<%@ page import="mencobatutorialservice.service.permission.mencobatutorialPermission" %>
+<%@ page import="mencobatutorialservice.service.permission.mencobatutorialEntryPermission" %>
+<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
+<%@ page import="com.liferay.portal.kernel.security.permission.ActionKeys" %>
+
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
