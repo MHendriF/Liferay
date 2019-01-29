@@ -21,6 +21,7 @@ import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetLinkConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -63,16 +64,6 @@ public class mencobatutorialLocalServiceImpl
         validate(name);
 
         mencobatutorial guestbook = getmencobatutorial(guestbookId);
-
-        User user = userLocalService.getUser(userId);
-
-        guestbook.setUserId(userId);
-        guestbook.setUserName(user.getFullName());
-        guestbook.setModifiedDate(serviceContext.getModifiedDate(now));
-        guestbook.setName(name);
-        guestbook.setExpandoBridgeAttributes(serviceContext);
-
-        mencobatutorialPersistence.update(guestbook);
         
         //////////
         AssetEntry assetEntry = assetEntryLocalService.updateEntry(guestbook.getUserId(),
@@ -85,9 +76,26 @@ public class mencobatutorialLocalServiceImpl
                 null, null, 0, 0, serviceContext.getAssetPriority());
 
 		assetLinkLocalService.updateLinks(serviceContext.getUserId(),
-		                assetEntry.getEntryId(), serviceContext.getAssetLinkEntryIds(),
-		                AssetLinkConstants.TYPE_RELATED);
+                assetEntry.getEntryId(), serviceContext.getAssetLinkEntryIds(),
+                AssetLinkConstants.TYPE_RELATED);
+		//////////
+		
+        User user = userLocalService.getUser(userId);
 
+        guestbook.setUserId(userId);
+        guestbook.setUserName(user.getFullName());
+        guestbook.setModifiedDate(serviceContext.getModifiedDate(now));
+        guestbook.setName(name);
+        guestbook.setExpandoBridgeAttributes(serviceContext);
+
+        mencobatutorialPersistence.update(guestbook);
+
+		resourceLocalService.updateResources(serviceContext.getCompanyId(),
+                serviceContext.getScopeGroupId(), 
+                mencobatutorial.class.getName(), guestbookId,
+                serviceContext.getGroupPermissions(),
+                serviceContext.getGuestPermissions());
+		
         return guestbook;
 	}
 	
@@ -96,7 +104,16 @@ public class mencobatutorialLocalServiceImpl
         SystemException {
 
 		mencobatutorial guestbook = getmencobatutorial(guestbookId);
-	
+		
+		//////////
+	    AssetEntry assetEntry = assetEntryLocalService.fetchEntry(
+				mencobatutorial.class.getName(), guestbookId);
+
+		assetLinkLocalService.deleteLinks(assetEntry.getEntryId());
+		
+		assetEntryLocalService.deleteEntry(assetEntry);
+		/////////
+		
 	    List<mencobatutorialEntry> entries = mencobatutorialEntryLocalService.getEntries(
 	                    serviceContext.getScopeGroupId(), guestbookId);
 	
@@ -106,14 +123,10 @@ public class mencobatutorialLocalServiceImpl
 	
 	    guestbook = deletemencobatutorial(guestbook);
 	    
-	    //////////
-	    AssetEntry assetEntry = assetEntryLocalService.fetchEntry(
-				mencobatutorial.class.getName(), guestbookId);
-
-		assetLinkLocalService.deleteLinks(assetEntry.getEntryId());
-		
-		assetEntryLocalService.deleteEntry(assetEntry);
-		
+	    resourceLocalService.deleteResource(serviceContext.getCompanyId(),
+	    		mencobatutorial.class.getName(), ResourceConstants.SCOPE_INDIVIDUAL,
+                guestbookId);
+	    
 	    return guestbook;
 	}
 	
@@ -158,9 +171,12 @@ public class mencobatutorialLocalServiceImpl
 	    assetLinkLocalService.updateLinks(userId, assetEntry.getEntryId(),
                 serviceContext.getAssetLinkEntryIds(),
                 AssetLinkConstants.TYPE_RELATED);
-
+	    /////////
+	    
+	    resourceLocalService.addResources(user.getCompanyId(), groupId, userId,
+	    	    mencobatutorial.class.getName(), guestbookId, false, true, true);
+	    
 	    return guestbook;
-
 	}
 	
 	public List<mencobatutorial> getGuestbooks(long groupId) {
