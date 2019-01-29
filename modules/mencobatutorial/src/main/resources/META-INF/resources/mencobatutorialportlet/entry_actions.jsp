@@ -12,7 +12,7 @@ mencobatutorialEntry entry = (mencobatutorialEntry)row.getObject();
 
     <portlet:renderURL var="viewEntryURL">
         <portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-        <portlet:param name="mvcPath" value="/guestbookwebportlet/view_entry.jsp" />
+        <portlet:param name="mvcPath" value="/mencobatutorialportlet/view_entry.jsp" />
     </portlet:renderURL>
 
     <liferay-ui:icon
@@ -25,7 +25,7 @@ mencobatutorialEntry entry = (mencobatutorialEntry)row.getObject();
         <portlet:renderURL var="editURL">
             <portlet:param name="entryId"
                 value="<%= String.valueOf(entry.getEntryId()) %>" />
-            <portlet:param name="mvcPath" value="/guestbookwebportlet/edit_entry.jsp" />
+            <portlet:param name="mvcPath" value="/mencobatutorialportlet/edit_entry.jsp" />
         </portlet:renderURL>
 
         <liferay-ui:icon image="edit" message="Edit"

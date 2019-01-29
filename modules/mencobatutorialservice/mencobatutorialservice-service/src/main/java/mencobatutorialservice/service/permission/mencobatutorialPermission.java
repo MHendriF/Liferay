@@ -12,7 +12,7 @@ import org.osgi.service.component.annotations.Reference;
 
 @Component(
     immediate = true,
-    property = {"model.class.name=mencobatutorialservice.model.mencobatutorial"}
+    property = {"model.class.name=mencobatutorialservice.model.mencobatutorial.2"}
 )
 
 public class mencobatutorialPermission implements BaseModelPermissionChecker {

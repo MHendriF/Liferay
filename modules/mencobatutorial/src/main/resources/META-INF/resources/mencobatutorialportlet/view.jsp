@@ -7,22 +7,22 @@ long guestbookId = Long.valueOf((Long) renderRequest
 
 <aui:button-row cssClass="guestbook-buttons">
 	
-	<c:if test='<%= mencobatutorialPermission.contains(permissionChecker, guestbookId, "ADD_ENTRY") %>'>
-	
+	<%-- <c:if test='<%= mencobatutorialPermission.contains(permissionChecker, guestbookId, "ADD_ENTRY") %>'>
+ --%>	
 	    <portlet:renderURL var="addEntryURL">
 	        <portlet:param name="mvcPath" value="/mencobatutorialportlet/edit_entry.jsp" />
 	        <portlet:param name="guestbookId"
 	            value="<%=String.valueOf(guestbookId)%>" />
 	    </portlet:renderURL>
-	
 	    <aui:button onClick="<%=addEntryURL.toString()%>" value="Add Entry"></aui:button>
-	</c:if>
+	
+	<%-- </c:if> --%>
 </aui:button-row>
 
 <liferay-ui:search-container total="<%=mencobatutorialEntryLocalServiceUtil.getEntriesCount(scopeGroupId,
 guestbookId) %>">
 
-<aui:nav cssClass="nav-tabs">
+<%-- <aui:nav cssClass="nav-tabs">
 
     <%
         List<mencobatutorial> guestbooks = mencobatutorialLocalServiceUtil.getGuestbooks(scopeGroupId);
@@ -47,7 +47,6 @@ guestbookId) %>">
             value="<%=String.valueOf(curGuestbook.getGuestbookId())%>" />
     </portlet:renderURL>
 
-
     <aui:nav-item cssClass="<%=cssClass%>" href="<%=viewPageURL%>"
         label="<%=HtmlUtil.escape(curGuestbook.getName())%>" />
 
@@ -57,8 +56,8 @@ guestbookId) %>">
             }
     %>
 
-</aui:nav>
-
+</aui:nav> --%>
+ 
 <liferay-ui:search-container-results
     results="<%=mencobatutorialEntryLocalServiceUtil.getEntries(scopeGroupId.longValue(),
                     guestbookId, searchContainer.getStart(),
@@ -67,7 +66,7 @@ guestbookId) %>">
 <liferay-ui:search-container-row
     className="mencobatutorialservice.model.mencobatutorialEntry" modelVar="entry">
 	
-	<liferay-ui:search-container-column-jsp path="/mencobatutorialportlet/entry_actions.jsp" align="right" />
+	<%-- <liferay-ui:search-container-column-jsp path="/mencobatutorialportlet/entry_actions.jsp" align="right" /> --%>
 	
 	<liferay-ui:search-container-column-text property="name" />
 	
