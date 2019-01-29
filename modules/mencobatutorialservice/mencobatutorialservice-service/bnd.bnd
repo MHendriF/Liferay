@@ -3,4 +3,6 @@ Bundle-SymbolicName: mencobatutorialservice.service
 Bundle-Version: 1.0.0
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
-Export-Package: mencobatutorialservice.mencobatutorial.asset
+Export-Package: \
+	mencobatutorialservice.mencobatutorial.asset,\
+	mencobatutorialservice.service.permission

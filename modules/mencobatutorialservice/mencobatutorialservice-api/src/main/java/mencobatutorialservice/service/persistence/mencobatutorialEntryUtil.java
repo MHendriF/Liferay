@@ -666,6 +666,77 @@ public class mencobatutorialEntryUtil {
 	}
 
 	/**
+	* Returns all the mencobatutorial entries that the user has permission to view where groupId = &#63; and guestbookId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param guestbookId the guestbook ID
+	* @return the matching mencobatutorial entries that the user has permission to view
+	*/
+	public static List<mencobatutorialEntry> filterFindByG_G(long groupId,
+		long guestbookId) {
+		return getPersistence().filterFindByG_G(groupId, guestbookId);
+	}
+
+	/**
+	* Returns a range of all the mencobatutorial entries that the user has permission to view where groupId = &#63; and guestbookId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param guestbookId the guestbook ID
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @return the range of matching mencobatutorial entries that the user has permission to view
+	*/
+	public static List<mencobatutorialEntry> filterFindByG_G(long groupId,
+		long guestbookId, int start, int end) {
+		return getPersistence().filterFindByG_G(groupId, guestbookId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the mencobatutorial entries that the user has permissions to view where groupId = &#63; and guestbookId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param guestbookId the guestbook ID
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching mencobatutorial entries that the user has permission to view
+	*/
+	public static List<mencobatutorialEntry> filterFindByG_G(long groupId,
+		long guestbookId, int start, int end,
+		OrderByComparator<mencobatutorialEntry> orderByComparator) {
+		return getPersistence()
+				   .filterFindByG_G(groupId, guestbookId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the mencobatutorial entries before and after the current mencobatutorial entry in the ordered set of mencobatutorial entries that the user has permission to view where groupId = &#63; and guestbookId = &#63;.
+	*
+	* @param entryId the primary key of the current mencobatutorial entry
+	* @param groupId the group ID
+	* @param guestbookId the guestbook ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next mencobatutorial entry
+	* @throws NoSuchmencobatutorialEntryException if a mencobatutorial entry with the primary key could not be found
+	*/
+	public static mencobatutorialEntry[] filterFindByG_G_PrevAndNext(
+		long entryId, long groupId, long guestbookId,
+		OrderByComparator<mencobatutorialEntry> orderByComparator)
+		throws mencobatutorialservice.exception.NoSuchmencobatutorialEntryException {
+		return getPersistence()
+				   .filterFindByG_G_PrevAndNext(entryId, groupId, guestbookId,
+			orderByComparator);
+	}
+
+	/**
 	* Removes all the mencobatutorial entries where groupId = &#63; and guestbookId = &#63; from the database.
 	*
 	* @param groupId the group ID
@@ -684,6 +755,17 @@ public class mencobatutorialEntryUtil {
 	*/
 	public static int countByG_G(long groupId, long guestbookId) {
 		return getPersistence().countByG_G(groupId, guestbookId);
+	}
+
+	/**
+	* Returns the number of mencobatutorial entries that the user has permission to view where groupId = &#63; and guestbookId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param guestbookId the guestbook ID
+	* @return the number of matching mencobatutorial entries that the user has permission to view
+	*/
+	public static int filterCountByG_G(long groupId, long guestbookId) {
+		return getPersistence().filterCountByG_G(groupId, guestbookId);
 	}
 
 	/**
@@ -998,6 +1080,77 @@ public class mencobatutorialEntryUtil {
 	}
 
 	/**
+	* Returns all the mencobatutorial entries that the user has permission to view where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @return the matching mencobatutorial entries that the user has permission to view
+	*/
+	public static List<mencobatutorialEntry> filterFindByG_S(long groupId,
+		int status) {
+		return getPersistence().filterFindByG_S(groupId, status);
+	}
+
+	/**
+	* Returns a range of all the mencobatutorial entries that the user has permission to view where groupId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @return the range of matching mencobatutorial entries that the user has permission to view
+	*/
+	public static List<mencobatutorialEntry> filterFindByG_S(long groupId,
+		int status, int start, int end) {
+		return getPersistence().filterFindByG_S(groupId, status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the mencobatutorial entries that the user has permissions to view where groupId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link mencobatutorialEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @param start the lower bound of the range of mencobatutorial entries
+	* @param end the upper bound of the range of mencobatutorial entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching mencobatutorial entries that the user has permission to view
+	*/
+	public static List<mencobatutorialEntry> filterFindByG_S(long groupId,
+		int status, int start, int end,
+		OrderByComparator<mencobatutorialEntry> orderByComparator) {
+		return getPersistence()
+				   .filterFindByG_S(groupId, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the mencobatutorial entries before and after the current mencobatutorial entry in the ordered set of mencobatutorial entries that the user has permission to view where groupId = &#63; and status = &#63;.
+	*
+	* @param entryId the primary key of the current mencobatutorial entry
+	* @param groupId the group ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next mencobatutorial entry
+	* @throws NoSuchmencobatutorialEntryException if a mencobatutorial entry with the primary key could not be found
+	*/
+	public static mencobatutorialEntry[] filterFindByG_S_PrevAndNext(
+		long entryId, long groupId, int status,
+		OrderByComparator<mencobatutorialEntry> orderByComparator)
+		throws mencobatutorialservice.exception.NoSuchmencobatutorialEntryException {
+		return getPersistence()
+				   .filterFindByG_S_PrevAndNext(entryId, groupId, status,
+			orderByComparator);
+	}
+
+	/**
 	* Removes all the mencobatutorial entries where groupId = &#63; and status = &#63; from the database.
 	*
 	* @param groupId the group ID
@@ -1016,6 +1169,17 @@ public class mencobatutorialEntryUtil {
 	*/
 	public static int countByG_S(long groupId, int status) {
 		return getPersistence().countByG_S(groupId, status);
+	}
+
+	/**
+	* Returns the number of mencobatutorial entries that the user has permission to view where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @return the number of matching mencobatutorial entries that the user has permission to view
+	*/
+	public static int filterCountByG_S(long groupId, int status) {
+		return getPersistence().filterCountByG_S(groupId, status);
 	}
 
 	/**
