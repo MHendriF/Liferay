@@ -21,6 +21,7 @@ import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetLinkConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.User;
 //import com.liferay.portal.kernel.search.suggest.SuggesterResult.Entry;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -102,6 +103,9 @@ public class mencobatutorialEntryLocalServiceImpl
 
 	    mencobatutorialEntryPersistence.update(entry);
 	    
+	    resourceLocalService.addResources(user.getCompanyId(), groupId, userId,
+	    		mencobatutorialEntry.class.getName(), entryId, false, true, true);
+	    
 	    return entry;
 	}
 	
@@ -144,7 +148,12 @@ public class mencobatutorialEntryLocalServiceImpl
 	    entry.setExpandoBridgeAttributes(serviceContext);
 
 	    mencobatutorialEntryPersistence.update(entry);
-
+	    
+	    resourceLocalService.updateResources(
+	    	      user.getCompanyId(), serviceContext.getScopeGroupId(), 
+	    	      mencobatutorialEntry.class.getName(), entryId, serviceContext.getGroupPermissions(),
+	    	      serviceContext.getGuestPermissions());
+	    
 	    return entry;
 	}
 	
@@ -163,7 +172,11 @@ public class mencobatutorialEntryLocalServiceImpl
 		///////////////////
 		
 	    entry = deletemencobatutorialEntry(entryId);
-
+	    
+	    resourceLocalService.deleteResource(
+	               serviceContext.getCompanyId(), mencobatutorialEntry.class.getName(),
+	               ResourceConstants.SCOPE_INDIVIDUAL, entryId);
+	    
 	    return entry;
 	}
 	
