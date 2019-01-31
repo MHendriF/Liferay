@@ -1,0 +1,4 @@
+Bundle-Name: productweb
+Bundle-SymbolicName: productweb
+Bundle-Version: 1.0.0
+Export-Package: productweb.constants

@@ -1,0 +1,13 @@
+dependencies {
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly project(":modules:product:product-api")
+	compile group: 'com.liferay', name: 'com.liferay.portal.dao.orm.custom.sql', version: '1.0.3'
+}
+
+buildService {
+	apiDir = "../product-api/src/main/java"
+}
+
+group = "product"
