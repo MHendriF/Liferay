@@ -22,8 +22,7 @@ long guestbookId = Long.valueOf((Long) renderRequest
 <liferay-ui:search-container total="<%=mencobatutorialEntryLocalServiceUtil.getEntriesCount(scopeGroupId,
 guestbookId) %>">
 
-<%-- <aui:nav cssClass="nav-tabs">
-
+<aui:nav cssClass="nav-tabs">
     <%
         List<mencobatutorial> guestbooks = mencobatutorialLocalServiceUtil.getGuestbooks(scopeGroupId);
 
@@ -55,8 +54,7 @@ guestbookId) %>">
 
             }
     %>
-
-</aui:nav> --%>
+</aui:nav>
  
 <liferay-ui:search-container-results
     results="<%=mencobatutorialEntryLocalServiceUtil.getEntries(scopeGroupId.longValue(),
