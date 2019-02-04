@@ -25,3 +25,7 @@
 
 <b>ProductLocalServiceUtil.getProductByPrice(10000)</b><br/>
 <%="Get Product:"+ProductLocalServiceUtil.getProductByPrice(10000)+"<br/>"%>
+
+<br/>
+<b>findByPriceRange(10000, 20000)</b><br/>
+<%="Get Product:"+ProductLocalServiceUtil.findByPriceRange(10000, 20000)+"<br/>"%>

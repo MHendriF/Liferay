@@ -183,6 +183,8 @@ public interface ProductLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Product fetchProductByUuidAndCompanyId(String uuid, long companyId);
 
+	public List<Product> findByPriceRange(long price1, long price2);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 

@@ -16,6 +16,12 @@ package product.service.impl;
 
 import java.util.List;
 
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+
 import aQute.bnd.annotation.ProviderType;
 import product.model.Product;
 import product.model.impl.ProductImpl;
@@ -56,6 +62,16 @@ public class ProductLocalServiceImpl extends ProductLocalServiceBaseImpl {
 	 public List<Product> getProductByPrice(long price) {
 		 return productFinder.getProductByPrice(price);
 	 }
+	 
+	 public List<Product> findByPriceRange(long price1, long price2) {
+		 
+		 DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Product.class, PortalClassLoaderUtil.getClassLoader());
+		 dynamicQuery.add(PropertyFactoryUtil.forName("productPrice").between(new Long(price1), new Long(price2)));
+		 
+		 List<Product> productList = ProductLocalServiceUtil.dynamicQuery(dynamicQuery);
+		 return productList;
+	 }
+	 
 	 
 	 //List<Product> products=ProductLocalServiceUtil.getProductByPrice(500);
 }

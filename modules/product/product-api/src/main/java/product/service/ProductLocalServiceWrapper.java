@@ -192,6 +192,12 @@ public class ProductLocalServiceWrapper implements ProductLocalService,
 	}
 
 	@Override
+	public java.util.List<product.model.Product> findByPriceRange(long price1,
+		long price2) {
+		return _productLocalService.findByPriceRange(price1, price2);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _productLocalService.getActionableDynamicQuery();
 	}

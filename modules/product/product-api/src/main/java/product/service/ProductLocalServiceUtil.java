@@ -190,6 +190,11 @@ public class ProductLocalServiceUtil {
 		return getService().fetchProductByUuidAndCompanyId(uuid, companyId);
 	}
 
+	public static java.util.List<product.model.Product> findByPriceRange(
+		long price1, long price2) {
+		return getService().findByPriceRange(price1, price2);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
